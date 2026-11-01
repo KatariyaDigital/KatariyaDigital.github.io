@@ -1,0 +1,33 @@
+{
+  "background_color": "#ffffff",
+  "description": "KATARIYA DIGITAL - Premium Digital Solutions Agency. Turning Ideas Into Digital Reality. Website development, Excel dashboards &amp; automation, graphic design &amp; branding, business documents &amp; presentations, AI solutions.",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "KARARIYA ONE",
+  "orientation": "any",
+  "scope": "/KatariyaDigital/",
+  "short_name": "KD ONE",
+  "start_url": "/KatariyaDigital/",
+  "theme_color": "#080808",
+  "icons": [
+    {
+      "src": "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&amp;fit=crop&amp;w=1200&amp;q=80",
+      "type": "image/jpeg",
+      "sizes": "1200x800",
+      "isSquare": false,
+      "isPng": false,
+      "isWebp": false,
+      "isJpg": true,
+      "width": 1200,
+      "is512x512": false,
+      "is256x256": false,
+      "is192x192": false
+    }
+  ],
+  "lang": "en",
+  "categories": [
+    "business",
+    "design",
+    "productivity"
+  ]
+}
