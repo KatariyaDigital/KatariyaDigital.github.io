@@ -65,7 +65,7 @@ window.KD_PUBLIC_KEY = '9tE5pzGvldMZts-8Z';
 <meta name="theme-color" content="#0b0b0b">
 <link rel="canonical" href="https://katariyadigital.github.io/">
 
-<!-- Open Graph / Facebook / WhatsApp -->
+<!-- Open Graph / Facebook /  -->
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://katariyadigital.github.io/">
 <meta property="og:title" content="KD Digital Studio | Turning Ideas Into Digital Reality">
@@ -417,7 +417,7 @@ window.KD_CONFIG = {
   emailjs_template_otp: 'template_otp', // Replace
   emailjs_template_enquiry: 'template_enquiry',
   emailjs_public_key: 'YOUR_PUBLIC_KEY_HERE', // <-- YAHAN KEY DALO
-  whatsapp_number: '91+ 8920524659',
+  _number: '91+ 8920524659',
   use_local_demo: true // true = localStorage se kaam karega bina backend ke
 };
 
@@ -710,7 +710,7 @@ function sendChat(){
       'website': 'Website development hamara main service hai! Starter ₹25k se, Business ₹50k se. Aapko kis type ki website chahiye? E-commerce, Corporate, ya Portfolio?',
       'price': 'Pricing flexible hai: Website ₹25k+, Dashboard ₹7,999+, Branding ₹9,500+. Exact quote ke liye aapka requirement dekhna padega. Enquiry form bharo?',
       'branding': 'Branding me logo, visual identity, brand guidelines sab included hai. 3 concepts + revisions. Portfolio dekhna chahenge?',
-      'default': 'Samajh gaya! Aapke liye best solution nikalta hu. Aap contact form bhar do ya WhatsApp karo 8920524659 pe - Prajjwal will call you under 2 hours! 😊'
+      'default': 'Samajh gaya! Aapke liye best solution nikalta hu. Aap contact form bhar do ya  karo 8920524659 pe - Prajjwal will call you under 2 hours! 😊'
     };
     var lower = msg.toLowerCase();
     var replyText = replies.default;
@@ -728,7 +728,7 @@ function sendChat(){
 document.getElementById('chatInput')?.addEventListener('keypress', function(e){ if(e.key==='Enter') sendChat(); });
 </script>
 
-<!-- WHATSAPP FLOAT - Enhanced -->
+<!--  FLOAT - Enhanced -->
 <div style="position:fixed; bottom:20px; left:20px; z-index:9998; display:flex; flex-direction:column; gap:10px;">
   <button onclick="document.getElementById('aiChatWidget').style.display='grid'" style="width:48px; height:48px; background:linear-gradient(135deg,#a855f7,#c084fc); border:none; border-radius:50%; display:grid; place-items:center; font-size:22px; cursor:pointer; box-shadow:0 4px 20px rgba(168,85,247,.4);" title="AI Chatbot">🤖</button>
 </div>
@@ -936,7 +936,7 @@ window.KD_copyAffiliate = function(){
 };
 window.KD_openIntlPayment = function(){ document.getElementById('intlModal').style.display='grid'; document.body.style.overflow='hidden'; };
 window.KD_openAIOps = function(){
-  alert('🧠 AI Operations - LIVE\n\n✅ Auto-lead scoring ON\n✅ Auto-followup in 24h\n✅ Auto-quote on enquiry\n✅ Auto-task assign\n\nAI abhi autopilot pe kaam kar raha hai. Naya lead aate hi AI khud follow-up bhejega (Formspree + WhatsApp via wa.me)');
+  alert('🧠 AI Operations - LIVE\n\n✅ Auto-lead scoring ON\n✅ Auto-followup in 24h\n✅ Auto-quote on enquiry\n✅ Auto-task assign\n\nAI abhi autopilot pe kaam kar raha hai. Naya lead aate hi AI khud follow-up bhejega (Formspree +  via wa.me)');
 };
 window.KD_LANG = localStorage.getItem('kd_lang') || 'en';
 window.KD_toggleLanguage = function(){
@@ -964,13 +964,13 @@ setTimeout(function(){ if(window.KD_CURRENCY !== 'INR') window.KD_setCurrency(wi
         <div class="eyebrow">Let’s Talk</div><h2>Have a project<br>in <span class="gold">mind?</span></h2>
         <p>Share a few details. We’ll review your requirement and get back to you to discuss the next step.</p>
         <div class="contact-item"><strong>Email</strong><span>prajjwalkatariya06@gmail.com</span></div>
-        <div class="contact-item"><strong>WhatsApp</strong><span>8920524659</span></div>
+        <div class="contact-item"><strong></strong><span>8920524659</span></div>
         <div class="contact-item"><strong>Studio</strong><span>Working remotely · India</span></div>
       </div>
       <form id="enquiryForm" class="reveal">
         <div class="field"><label for="name">Your name *</label><input id="name" name="name" required placeholder="Full name"></div>
         <div class="field"><label for="email">Email address *</label><input id="email" name="email" type="email" required placeholder="you@example.com"></div>
-        <div class="field"><label for="phone">Phone / WhatsApp</label><input id="phone" name="phone" placeholder="+91"></div>
+        <div class="field"><label for="phone">Phone / </label><input id="phone" name="phone" placeholder="+91"></div>
         <div class="field"><label for="company">Company / brand</label><input id="company" name="company" placeholder="Business name (optional)"></div>
         <div class="field"><label for="service">Service required *</label><select id="service" name="service" required><option value="">Select a service</option><option>Website Development</option><option>Excel & Business Systems</option><option>Branding & Design</option><option>Digital Marketing</option><option>Data & Analytics</option><option>AI & Automation</option><option>Presentations & Documents</option><option>Business Growth Support</option><option>Custom Digital Project</option></select></div>
         <div class="field"><label for="budget">Estimated budget</label><select id="budget" name="budget"><option value="">Select budget</option><option>Below ₹50,000</option><option>₹50,000 – ₹1,00,000</option><option>₹1,00,000 – ₹5,00,000</option><option>₹5,00,000 – ₹10,00,000</option><option>₹10,00,000+</option><option>Not sure yet</option></select></div>
@@ -1412,7 +1412,7 @@ document.querySelectorAll('.work, .card').forEach(card => {
           throw new Error("Formspree error");
         }
       } catch(err){
-        showNotice("❌ Failed to send. Please try email or WhatsApp.", true);
+        showNotice("❌ Failed to send. Please try email or .", true);
       }
     } else {
       // Fallback: If file attached but no Formspree, instruct user
@@ -1475,7 +1475,7 @@ window.closeModals = window.KD_closeModals;
 <script>
 // ===== 100% WORKING FUNCTIONALITIES =====
 
-// 1. ENQUIRY FORM - Now saves to CRM + Sends Email via EmailJS + WhatsApp
+// 1. ENQUIRY FORM - Now saves to CRM + Sends Email via EmailJS + 
 (function(){
   var form = document.getElementById('enquiryForm');
   if(!form) return;
@@ -1549,7 +1549,7 @@ window.closeModals = window.KD_closeModals;
       window.open('mailto:prajjwalkatariya06@gmail.com?subject='+subject+'&body='+body, '_blank');
     }
     
-    // WhatsApp notification
+    //  notification
     var waMsg = encodeURIComponent('New Lead Alert! 🚀\nName: '+data.name+'\nService: '+data.service+'\nEmail: '+data.email+'\nPhone: '+data.phone);
     // Uncomment to auto open WhatsApp: window.open('https://wa.me/'+window.KD_CONFIG.whatsapp_number+'?text='+waMsg, '_blank');
     
@@ -2312,7 +2312,7 @@ window.KD_closeModals = function(){
         <div style="margin-top:20px; padding:12px; background:#111; border:1px solid #222; border-radius:8px;">
           <div style="color:#888; font-size:10px; font-weight:700; letter-spacing:1px; margin-bottom:8px;">QUICK CONTACT</div>
           <div style="color:#fff; font-size:11px; line-height:1.6;">
-            📱 WhatsApp: +91 98765 43210<br>
+            📱 WhatsApp: +91 8920524659<br>
             📧 Email: prajjwalkatariya06@gmail.com<br>
             🕒 Support: 10AM - 7PM IST
           </div>
@@ -2364,7 +2364,7 @@ window.KD_createTicket = function(){
   var subj=document.getElementById('supportSubject')?.value;
   var msg=document.getElementById('supportMessage')?.value;
   if(!subj || !msg){ alert('Subject aur message dono dalo'); return; }
-  alert('✅ Ticket Created!\n\nSubject: ' + subj + '\n\nOur team will reply within 2 hours.\nWhatsApp: +91 98765 43210');
+  alert('✅ Ticket Created!\n\nSubject: ' + subj + '\n\nOur team will reply within 2 hours.\nWhatsApp: +91 8920524659');
   document.getElementById('supportSubject').value='';
   document.getElementById('supportMessage').value='';
 };
