@@ -228,11 +228,14 @@ html{scroll-behavior:smooth}
   // IMPORTANT: Replace this with the business email address that should receive enquiries.
   const BUSINESS_EMAIL = "YOUR_EMAIL@example.com";
 
-  const menuBtn = document.getElementById("menuBtn");
-  const navLinks = document.getElementById("navLinks");
+ const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+if(menuBtn && navLinks){
   menuBtn.addEventListener("click", () => navLinks.classList.toggle("show"));
   navLinks.querySelectorAll("a").forEach(a => a.addEventListener("click", () => navLinks.classList.remove("show")));
+}
 
+document.getElementById("year").textContent = new Date().getFullYear();
   document.getElementById("year").textContent = new Date().getFullYear();
 
   const revealObserver = new IntersectionObserver(entries => {
