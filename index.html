@@ -67,8 +67,9 @@
     form .btn{grid-column:1/-1}.form-note{grid-column:1/-1;font-size:.75rem;color:#85817a}
     .faq-list{max-width:850px;margin:auto}.faq{border-bottom:1px solid var(--line)}.faq button{width:100%;padding:22px 0;background:none;border:0;color:white;text-align:left;display:flex;justify-content:space-between;cursor:pointer;font-weight:600}.faq p{display:none;padding:0 30px 20px 0;font-size:.9rem}.faq.open p{display:block}.faq button span{color:var(--gold);font-size:1.3rem}
     footer{border-top:1px solid var(--line);padding:35px 0}.footer-row{display:flex;justify-content:space-between;gap:20px;align-items:center}.footer-links{display:flex;gap:20px;color:var(--muted);font-size:.82rem}.copyright{font-size:.78rem;color:#777;margin-top:18px}
-   .reveal{opacity:0;transform:translateY(15px);transition:opacity .4s ease,transform .4s ease; will-change:transform, opacity;}
-.reveal.visible{opacity:1;transform:none;}
+ .reveal{opacity:0;transform:translateY(15px);transition:opacity .6s ease,transform .6s ease;will-change:transform,opacity}
+.reveal.visible{opacity:1;transform:none}
+html{scroll-behavior:smooth}
     .notice{position:fixed;bottom:20px;right:20px;z-index:99;background:#1b1b1b;border:1px solid var(--gold);padding:14px 18px;max-width:340px;font-size:.85rem;display:none}
     @media(max-width:900px){.navlinks{gap:14px;font-size:.8rem}.hero-grid{grid-template-columns:1fr  .7fr}.cards,.work-grid{grid-template-columns:repeat(2,1fr)}.pricing-grid{grid-template-columns:repeat(2,1fr)}.steps{grid-template-columns:repeat(3,1fr)}}
     @media(max-width:680px){.container{width:min(100% - 32px,var(--max))}.section{padding:78px 0}.section-head{display:block}.section-head p{margin-top:15px}.menu-btn{display:block}.navlinks{display:none;position:absolute;top:78px;left:0;width:100%;padding:20px;background:#0b0b0b;border-bottom:1px solid var(--line);flex-direction:column;align-items:stretch}.navlinks.show{display:flex}.navlinks a{padding:8px 10px}.hero{padding:125px 0 65px;min-height:auto}.hero-grid{grid-template-columns:1fr}.hero-art{min-height:280px;order:-1}.orbit{width:250px}.monogram{font-size:5rem}.hero h1{font-size:3.25rem}.stats{margin-top:38px}.stat{padding:0 10px}.stat strong{font-size:1.2rem}.stat span{font-size:.68rem}.cards,.work-grid,.pricing-grid{grid-template-columns:1fr}.about-grid,.contact-grid{grid-template-columns:1fr;gap:30px}.about-box{min-height:240px}.steps{grid-template-columns:1fr 1fr}.step{padding:15px 8px 0}form{grid-template-columns:1fr;padding:20px}.field.full{grid-column:auto}form .btn,.form-note{grid-column:auto}.footer-row{align-items:flex-start;flex-direction:column}.footer-links{flex-wrap:wrap}.checklist{grid-template-columns:1fr 1fr}}
@@ -242,11 +243,11 @@
       }
     });
   }, {threshold: 0.12});
-  document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
-// Fallback - agar observer fail bhi ho jaye toh 1 sec me sab dikh jayega, blank nahi hoga
+ document.querySelectorAll(".reveal").forEach(el => revealObserver.observe(el));
+// ooth fallback - agar user jaldi scroll kare toh bhi animation dikhe
 setTimeout(() => {
-  document.querySelectorAll('.reveal').forEach(el => el.classList.add('visible'));
-}, 800);
+  document.querySelectorAll('.reveal:not(.visible)').forEach(el => el.classList.add('visible'));
+}, 1200);
   document.querySelectorAll(".faq button").forEach(button => {
     button.addEventListener("click", () => {
       const item = button.parentElement;
