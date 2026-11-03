@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>EmailJS Diagnostic - KD</title>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+body{font-family:system-ui;background:#0a0a0a;color:#fff;padding:20px;max-width:600px;margin:0 auto}
+input{width:100%;background:#111;border:1px solid #333;color:#fff;padding:12px;border-radius:8px;margin:6px 0 12px;font-family:monospace}
+button{background:#c6a76b;color:#000;border:none;padding:12px 20px;border-radius:8px;font-weight:800;cursor:pointer;width:100%;margin-top:8px}
+.log{background:#111;border:1px solid #222;border-radius:8px;padding:14px;margin-top:16px;font-size:12px;white-space:pre-wrap;max-height:300px;overflow:auto}
+.ok{color:#4ade80} .err{color:#ef4444} .warn{color:#facc15}
+</style>
+</head>
+<body>
+<h2>🔧 EmailJS Diagnostic Tool</h2>
+<p style="color:#888;font-size:12px">Yahan apne 3 keys paste karo - same account se - aur test karo</p>
+
+<label>Service ID (e.g. service_qwyk725)</label>
+<input id="sid" placeholder="service_xxxxxxx" value="service_qwyk725">
+
+<label>Template ID (e.g. template_2xrfwsa)</label>
+<input id="tid" placeholder="template_xxxxxxx" value="template_2xrfwsa">
+
+<label>Public Key (e.g. 9tE5pzGv...)</label>
+<input id="pkey" placeholder="9tE5pzGv..." value="9tE5pzGvIdMZts-8Z">
+
+<label>Test Email (jahan OTP bhejna hai)</label>
+<input id="email" type="email" value="prajjwalkatariya713@gmail.com">
+
+<button onclick="testEmailJS()">🚀 Test EmailJS - Send OTP</button>
+<button onclick="checkKeys()" style="background:#222;color:#fff;border:1px solid #333">🔍 Check Keys Validity</button>
+
+<div id="log" class="log">Logs yahan ayenge...
+
+1. Pehle 3 keys same account se paste karo
+2. Test button dabao
+3. Error ayega to screenshot bhejo</div>
+
+<script>
+function log(msg, cls=''){
+  var l=document.getElementById('log');
+  var div=document.createElement('div');
+  div.className=cls;
+  div.textContent=new Date().toLocaleTimeString()+' - '+msg;
+  l.appendChild(div);
+  l.scrollTop=l.scrollHeight;
+}
+
+async function testEmailJS(){
+  var sid=document.getElementById('sid').value.trim();
+  var tid=document.getElementById('tid').value.trim();
+  var pkey=document.getElementById('pkey').value.trim();
+  var email=document.getElementById('email').value.trim();
+  var otp=Math.floor(100000+Math.random()*900000).toString();
+  
+  document.getElementById('log').innerHTML='';
+  log('Testing with: '+sid+' | '+tid+' | '+pkey.substring(0,8)+'...','');
+  
+  if(!sid || !tid || !pkey){ log('❌ Sab fields bharo','err'); return; }
+  
+  try{
+    if(typeof emailjs==='undefined'){ log('❌ emailjs not loaded - CDN blocked','err'); return; }
+    emailjs.init(pkey);
+    log('✅ emailjs.init success','ok');
+    
+    log('📧 Sending OTP '+otp+' to '+email+'...','');
+    var res = await emailjs.send(sid, tid, {
+      to_email: email,
+      to_name: email.split('@')[0],
+      otp_code: otp,
+      from_name: 'KD Digital Studio'
+    });
+    log('✅ SUCCESS! Status: '+res.status+' Text: '+res.text,'ok');
+    log('✅ OTP Gmail pe bhej diya! Inbox + Spam check karo. OTP: '+otp,'ok');
+    log('Agar email nahi aaya to EmailJS Dashboard > Email Services > Connected hai kya check karo','warn');
+  }catch(e){
+    log('❌ FAILED: '+(e.text||e.message||JSON.stringify(e)),'err');
+    log('Full error: '+JSON.stringify(e,null,2),'err');
+    log('\n--- FIX ---','warn');
+    log('1. Teeno keys SAME account se copy karo (dashboard.emailjs.com)','warn');
+    log('2. Account > API Keys > Public Key sahi hai?','warn');
+    log('3. Email Services > Service ID sahi hai? Gmail Connected?','warn');
+    log('4. Email Templates > Template ID sahi hai?','warn');
+    log('5. Template > To Email = {{to_email}} hai? Fixed email nahi','warn');
+  }
+}
+
+function checkKeys(){
+  var sid=document.getElementById('sid').value.trim();
+  var tid=document.getElementById('tid').value.trim();
+  var pkey=document.getElementById('pkey').value.trim();
+  document.getElementById('log').innerHTML='';
+  log('Checking pattern...','');
+  if(sid.startsWith('service_')) log('✅ Service ID format OK','ok'); else log('❌ Service ID should start with service_','err');
+  if(tid.startsWith('template_')) log('✅ Template ID format OK','ok'); else log('❌ Template ID should start with template_','err');
+  if(pkey.length>10) log('✅ Public Key length OK ('+pkey.length+' chars)','ok'); else log('❌ Public Key too short','err');
+  log('\nNote: Format OK hone se kaam nahi chalega - teeno SAME account se hone chahiye','warn');
+}
+</script>
+</body>
+</html>
