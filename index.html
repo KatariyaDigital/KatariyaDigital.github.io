@@ -1,6 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <head>
+<!-- EMAILJS - OTP GMAIL PE BHEJNE KE LIYE - YAHAN 3 KEYS DALO -->
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+// >>>>>>>>>>>>> YAHAN APNI 3 KEYS DALO - BAS YAHI CHANGE KARNA HAI <<<<<<<<<<<<<
+window.KD_EMAILJS_SERVICE_ID = 'service_qwyk725';        // Email Services se - e.g. service_abc123
+window.KD_EMAILJS_TEMPLATE_OTP_ID = 'template_2xrfwsa';  // Email Templates se - e.g. template_otp123
+window.KD_EMAILJS_PUBLIC_KEY = '9tE5pzGvldMZts-8Z';        // Account > API Keys se - e.g. AbCdEfGh123
+// >>>>>>>>>>>>> BAS ITNA HI DALNA HAI <<<<<<<<<<<<<
+
+(function(){
+  if(window.KD_EMAILJS_PUBLIC_KEY !== 'YOUR_PUBLIC_KEY_HERE' && window.emailjs){
+    emailjs.init(window.KD_EMAILJS_PUBLIC_KEY);
+    console.log('✅ EmailJS Ready - OTP Gmail pe jayega');
+  }
+})();
+</script>
+<!-- END EMAILJS -->
+
+  <meta charset="UTF-8">
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#080808">
