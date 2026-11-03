@@ -3,45 +3,25 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Business Intelligence Dashboard | KD Digital Studio</title>
+<title>Client Dashboard - KD Digital Studio</title>
+<link rel="icon" href="KD_logo_transparent_small.png">
 <style>
-body{margin:0;background:#0a0a0a;color:#e5e5e5;font-family:Inter, sans-serif;}
-.container{max-width:800px;margin:0 auto;padding:40px 20px;}
-a{color:#d4b36a;text-decoration:none}
-.eyebrow{color:#d4b36a;font-size:12px;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
-h1{font-size:36px;margin:0 0 10px} h2{color:#d4b36a;margin-top:40px}
-.tag{display:inline-block;border:1px solid #333;padding:4px 10px;border-radius:20px;font-size:12px;margin:4px;color:#aaa}
-.btn{display:inline-block;margin-top:20px;padding:12px 20px;border:1px solid #d4b36a;color:#d4b36a;border-radius:6px}
-.btn:hover{background:#d4b36a;color:#000}
-.box{background:#141414;border:1px solid #222;padding:20px;border-radius:10px;margin:20px 0}
+:root{--gold:#c6a76b;--line:rgba(255,255,255,.08);--bg:#0b0b0b}
+*{margin:0;padding:0;box-sizing:border-box}
+body{background:var(--bg);color:white;font-family:Manrope, sans-serif;min-height:100vh}
+.topbar{background:#0f0f0f;border-bottom:1px solid var(--line);padding:14px 24px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-weight:800;letter-spacing:-.04em}.logo span{color:var(--gold)}
+.container{width:min(1100px,92%);margin:30px auto}
+.grid{display:grid;grid-template-columns:260px 1fr;gap:20px}
+.sidebar{background:#121212;border:1px solid var(--line);border-radius:10px;padding:18px;height:fit-content}
+.sidebar a{display:block;padding:10px 12px;border-radius:6px;color:#a8a8a8;text-decoration:none;font-size:13px;margin-bottom:4px}
+.sidebar a.active,.sidebar a:hover{background:rgba(198,167,107,.12);color:#e1c58f}
+.card{background:linear-gradient(145deg,#161616,#0f0f0f);border:1px solid rgba(198,167,107,.18);border-radius:10px;padding:22px;margin-bottom:16px}
+.btn{background:linear-gradient(135deg,#c6a76b,#e1c58f);color:#0b0b0b;border:0;padding:10px 18px;border-radius:6px;font-weight:600;cursor:pointer;font-size:13px}
 </style>
 </head>
 <body>
-<div class="container">
-<a href="../index.html">← Back to Home</a>
-<div class="eyebrow" style="margin-top:30px">02 / Data & Analytics</div>
-<h1>Business Intelligence Dashboard</h1>
-<p style="color:#999">A sample dashboard for tracking business performance</p>
-<div><span class='tag'>React</span><span class='tag'>Recharts</span><span class='tag'>Firebase</span></div>
-
-<div class="box">
-<h2>Overview</h2>
-<p>A unified BI dashboard to track revenue, users and growth KPIs in one place.</p>
-</div>
-
-<h2>Problem</h2>
-<p>Founders use 5+ tools, no single source of truth.</p>
-
-<h2>Solution</h2>
-<p>Real-time charts, cohort analysis, custom filters, export to CSV/PDF, role-based access.</p>
-
-<h2>Features</h2>
-<p>MRR tracking, User analytics, Date filters, Export, Roles</p>
-
-<h2>Tech Stack</h2>
-<p>React, Chart.js, Firebase, Node.js</p>
-
-<a class="btn" href="../index.html#contact">Get Similar Project →</a>
-</div>
+<div class="topbar"><div class="logo">KD. <span>DIGITAL</span> STUDIO</div><div style="display:flex;gap:12px;align-items:center"><span style="color:#777;font-size:12px">client@velorax.com</span><div style="width:32px;height:32px;background:linear-gradient(135deg,#c6a76b,#e1c58f);border-radius:50%;display:grid;place-items:center;color:#0b0b0b;font-weight:700;font-size:12px">R</div></div></div>
+<div class="container"><div class="grid"><div class="sidebar"><a class="active">📊 Dashboard</a><a>📁 My Projects</a><a>💳 Payments & Invoices</a><a>📎 Files & Deliverables</a><a>💬 Messages</a><a>⚙️ Settings</a><div style="margin-top:20px;padding-top:16px;border-top:1px solid var(--line)"><a href="index.html">← Back to Website</a></div></div><div><div class="card"><h2 style="margin-bottom:8px">Welcome back, Rahul! 👋</h2><p style="color:#a8a8a8;font-size:13px">Your Velorax project is 75% complete. Next milestone: Payment integration.</p><div style="margin-top:18px;display:grid;grid-template-columns:repeat(3,1fr);gap:12px"><div style="background:#0f0f0f;border:1px solid var(--line);border-radius:8px;padding:14px"><div style="color:#777;font-size:10px">ACTIVE PROJECTS</div><div style="font-size:22px;font-weight:700;margin-top:4px">1</div></div><div style="background:#0f0f0f;border:1px solid var(--line);border-radius:8px;padding:14px"><div style="color:#777;font-size:10px">DUE AMOUNT</div><div style="font-size:22px;font-weight:700;margin-top:4px">₹25,000</div></div><div style="background:#0f0f0f;border:1px solid var(--line);border-radius:8px;padding:14px"><div style="color:#777;font-size:10px">NEXT MEETING</div><div style="font-size:13px;font-weight:600;margin-top:4px">Nov 5, 4 PM</div></div></div></div><div class="card"><h3 style="font-size:14px;margin-bottom:14px">Project Tracking - Velorax E-commerce</h3><div style="display:flex;gap:8px;align-items:center;margin-bottom:12px"><div style="flex:1;background:rgba(255,255,255,.08);height:8px;border-radius:4px"><div style="width:75%;background:linear-gradient(90deg,#c6a76b,#e1c58f);height:100%;border-radius:4px"></div></div><span style="color:#c6a76b;font-weight:600;font-size:13px">75%</span></div><div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-top:16px"><div style="text-align:center"><div style="width:32px;height:32px;background:#4ade80;border-radius:50%;display:grid;place-items:center;margin:0 auto 6px;color:#0b0b0b">✓</div><div style="font-size:11px">Discovery</div></div><div style="text-align:center"><div style="width:32px;height:32px;background:#4ade80;border-radius:50%;display:grid;place-items:center;margin:0 auto 6px;color:#0b0b0b">✓</div><div style="font-size:11px">Design</div></div><div style="text-align:center"><div style="width:32px;height:32px;background:#c6a76b;border-radius:50%;display:grid;place-items:center;margin:0 auto 6px;color:#0b0b0b">3</div><div style="font-size:11px;color:#c6a76b">Development</div></div><div style="text-align:center"><div style="width:32px;height:32px;background:rgba(255,255,255,.12);border-radius:50%;display:grid;place-items:center;margin:0 auto 6px">4</div><div style="font-size:11px;color:#777">Launch</div></div></div></div><div class="card"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px"><h3 style="font-size:14px">Invoices</h3><button class="btn">Pay Now - ₹25,000</button></div><div style="background:#0f0f0f;border:1px solid var(--line);border-radius:8px;padding:12px;display:flex;justify-content:space-between;align-items:center"><div><div style="font-size:13px;font-weight:600">Invoice #KD-2026-001</div><div style="font-size:11px;color:#777;margin-top:2px">Due: Nov 10, 2026 • 50% Advance Paid</div></div><div style="background:rgba(255,200,0,.15);color:#ffcc00;padding:4px 10px;border-radius:12px;font-size:10px">PENDING</div></div></div></div></div></div>
 </body>
 </html>
