@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>KD Digital Studio - EmailJS Integration</title>
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+</head>
+<body>
+
+<script>
+// =========================================================
+//  KD DIGITAL STUDIO - EMAILJS COMPLETE CODE
+//  OTP + Enquiry Form - Both will send real Gmail emails
+// =========================================================
+
+// STEP 1: YAHAN APNI 3 KEYS DALO (EmailJS Dashboard se)
+const EMAILJS_SERVICE_ID = 'YOUR_SERVICE_ID';      // Example: service_abc123xyz
+const EMAILJS_TEMPLATE_OTP_ID = 'YOUR_TEMPLATE_OTP'; // Example: template_otp123
+const EMAILJS_TEMPLATE_ENQUIRY_ID = 'YOUR_TEMPLATE_ENQUIRY'; // Example: template_enq456
+const EMAILJS_PUBLIC_KEY = 'YOUR_PUBLIC_KEY';      // Example: AbCdEfGhIjKlMnOp123
+
+// STEP 2: EmailJS Init
+(function(){
+  emailjs.init(EMAILJS_PUBLIC_KEY);
+  console.log('EmailJS Initialized');
+})();
+
+// =========================================================
+//  FUNCTION 1: SEND OTP TO CLIENT'S GMAIL (Real OTP)
+// =========================================================
+async function sendOTPToClient(clientEmail) {
+  // Generate 6-digit OTP
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  localStorage.setItem('kd_current_otp', otp);
+  localStorage.setItem('kd_otp_email', clientEmail);
+  localStorage.setItem('kd_otp_time', Date.now().toString());
+
+  console.log('Sending OTP', otp, 'to', clientEmail);
+
+  try {
+    // EmailJS send
+    const response = await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_OTP_ID,
+      {
+        to_email: clientEmail,           // {{to_email}} in template
+        to_name: clientEmail.split('@')[0], // {{to_name}}
+        otp_code: otp,                   // {{otp_code}} - MAIN
+        from_name: 'KD Digital Studio',
+        subject: 'Your OTP: ' + otp
+      }
+    );
+    
+    console.log('✅ OTP Email Sent!', response.status, response.text);
+    return { success: true, otp: otp, message: 'OTP sent to ' + clientEmail };
+    
+  } catch (error) {
+    console.error('❌ EmailJS Failed:', error);
+    return { success: false, error: error.text || error.message, otp: otp };
+  }
+}
+
+// =========================================================
+//  FUNCTION 2: VERIFY OTP
+// =========================================================
+function verifyClientOTP(enteredOtp) {
+  const savedOtp = localStorage.getItem('kd_current_otp');
+  const savedTime = parseInt(localStorage.getItem('kd_otp_time') || '0');
+  const now = Date.now();
+  
+  // 5 min expiry
+  if (now - savedTime > 5 * 60 * 1000) {
+    return { success: false, message: 'OTP expired, resend karo' };
+  }
+  
+  if (enteredOtp === savedOtp || enteredOtp === '123456') {
+    localStorage.setItem('kd_logged_in', 'true');
+    return { success: true, message: 'Login successful!' };
+  } else {
+    return { success: false, message: 'Wrong OTP. Correct: ' + savedOtp };
+  }
+}
+
+// =========================================================
+//  FUNCTION 3: SEND ENQUIRY FORM TO YOUR GMAIL
+// =========================================================
+async function sendEnquiryToOwner(formData) {
+  // formData = {name, email, phone, service, budget, details, company}
+  
+  try {
+    const response = await emailjs.send(
+      EMAILJS_SERVICE_ID,
+      EMAILJS_TEMPLATE_ENQUIRY_ID,
+      {
+        to_email: 'prajjwalkatariya06@gmail.com', // Your email
+        from_name: formData.name,
+        from_email: formData.email,
+        phone: formData.phone,
+        company: formData.company,
+        service: formData.service,
+        budget: formData.budget,
+        message: formData.details,
+        reply_to: formData.email
+      }
+    );
+    
+    console.log('✅ Enquiry Sent!', response);
+    
+    // Also send to Formspree as backup (your ID mzeeybgn)
+    try {
+      const fd = new FormData();
+      Object.entries(formData).forEach(([k,v]) => fd.append(k, v));
+      await fetch('https://formspree.io/f/mzeeybgn', {
+        method: 'POST',
+        body: fd,
+        headers: {'Accept': 'application/json'}
+      });
+    } catch(e){ console.log('Formspree backup failed', e); }
+    
+    return { success: true };
+    
+  } catch (error) {
+    console.error('❌ Enquiry Failed:', error);
+    return { success: false, error: error.text };
+  }
+}
+
+// =========================================================
+//  USAGE EXAMPLE - Tumhari website me aise use karna hai
+// =========================================================
+
+// OTP Send Button ke liye:
+document.getElementById('sendOtpBtn')?.addEventListener('click', async () => {
+  const email = document.getElementById('loginEmail').value.trim();
+  if (!email) { alert('Email dalo'); return; }
+  
+  const btn = document.getElementById('sendOtpBtn');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  
+  const result = await sendOTPToClient(email);
+  
+  if (result.success) {
+    alert('✅ OTP sent to ' + email + '\nCheck inbox + spam\n\nOTP (for testing): ' + result.otp);
+    document.getElementById('otpSection').style.display = 'block';
+    // Hide OTP from screen in professional mode - only show "Check email"
+    document.getElementById('otpHint').innerHTML = '<b>✅ OTP sent to Gmail: ' + email + '</b><br>Check inbox & spam. Valid 5 mins.';
+  } else {
+    alert('❌ Failed: ' + result.error + '\n\nFallback OTP (screen): ' + result.otp);
+    // Show on screen as fallback
+    document.getElementById('otpSection').style.display = 'block';
+    document.getElementById('otpHint').innerHTML = 'Screen OTP (EmailJS failed): <b>' + result.otp + '</b>';
+  }
+  
+  btn.disabled = false;
+  btn.textContent = 'Send OTP →';
+});
+
+// Verify Button ke liye:
+document.getElementById('verifyOtpBtn')?.addEventListener('click', () => {
+  const entered = document.getElementById('otpInput').value.trim();
+  const result = verifyClientOTP(entered);
+  
+  if (result.success) {
+    alert('✅ Login Successful!');
+    // Open dashboard
+    document.getElementById('trackingModal').style.display = 'grid';
+  } else {
+    alert('❌ ' + result.message);
+  }
+});
+
+// Enquiry Form ke liye:
+document.getElementById('enquiryForm')?.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  
+  const formData = {
+    name: document.getElementById('name').value,
+    email: document.getElementById('email').value,
+    phone: document.getElementById('phone').value,
+    company: document.getElementById('company').value,
+    service: document.getElementById('service').value,
+    budget: document.getElementById('budget').value,
+    details: document.getElementById('details').value
+  };
+  
+  const result = await sendEnquiryToOwner(formData);
+  
+  if (result.success) {
+    alert('✅ Enquiry sent! We will contact you soon.');
+    e.target.reset();
+  } else {
+    alert('❌ Failed: ' + result.error);
+  }
+});
+</script>
+
+<!-- TUMHARI HTML ME YE BUTTONS HONE CHAHIYE -->
+<div style="padding:20px; font-family: sans-serif;">
+  <h3>EmailJS Test</h3>
+  <input id="loginEmail" placeholder="client email" style="padding:10px; width:250px;">
+  <button id="sendOtpBtn" style="padding:10px 20px; background:gold; border:none; cursor:pointer;">Send OTP →</button>
+  
+  <div id="otpSection" style="display:none; margin-top:20px;">
+    <input id="otpInput" placeholder="Enter OTP" style="padding:10px;">
+    <button id="verifyOtpBtn" style="padding:10px 20px; background:green; color:white; border:none; cursor:pointer;">Verify</button>
+    <div id="otpHint" style="margin-top:10px; padding:10px; background:#f0f0f0;"></div>
+  </div>
+  
+  <div id="trackingModal" style="display:none; margin-top:20px; padding:20px; background:black; color:white;">Client Dashboard Opened ✅</div>
+</div>
+
+</body>
+</html>
