@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OTP Test - KD Studio</title>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<style>
+body{background:#0a0a0a; color:#fff; font-family:sans-serif; padding:20px; max-width:600px; margin:0 auto;}
+input{width:100%; padding:14px; background:#1a1a1a; border:1px solid #333; color:#fff; border-radius:8px; margin:10px 0;}
+button{width:100%; padding:14px; background:#c6a76b; color:#000; border:none; border-radius:8px; font-weight:700; cursor:pointer; margin:5px 0;}
+.log{background:#000; border:1px solid #222; padding:12px; border-radius:8px; margin-top:15px; font-family:monospace; font-size:11px; max-height:300px; overflow:auto; white-space:pre-wrap;}
+.success{color:#4ade80;} .error{color:#ef4444;} .warn{color:#facc15;}
+</style>
+</head>
+<body>
+<h2>🧪 KD Studio - OTP Test (Debug Mode)</h2>
+<p style="color:#888; font-size:12px;">Service: service_qwyk725 | Template: template_2xrfwsa | Key: 9tE5pzGvId... </p>
+
+<input type="email" id="testEmail" placeholder="Client email - e.g. prajjwalkatariya713@gmail.com" value="prajjwalkatariya713@gmail.com">
+<button onclick="testOTP()">Send OTP - Test</button>
+<button onclick="checkConfig()" style="background:#1a1a1a; color:#fff; border:1px solid #333;">Check Config</button>
+<button onclick="openEmailJS()" style="background:#1a1a1a; color:#fff; border:1px solid #333;">Open EmailJS Dashboard</button>
+
+<div id="otpSection" style="display:none; margin-top:20px;">
+  <input type="text" id="otpInput" placeholder="Enter OTP" style="text-align:center; letter-spacing:6px; font-size:20px;">
+  <button onclick="verifyOTP()">Verify OTP</button>
+  <div id="otpDisplay" style="margin-top:10px; padding:10px; background:#111; border-radius:8px; text-align:center;"></div>
+</div>
+
+<div id="log" class="log">Logs will appear here...
+</div>
+
+<script>
+// REAL KEYS FROM YOUR ACCOUNT
+const SERVICE_ID = 'service_qwyk725';
+const TEMPLATE_ID = 'template_2xrfwsa';
+const PUBLIC_KEY = '9tE5pzGvIdMZts-8Z';
+
+let currentOTP = null;
+
+function log(msg, type=''){
+  const el = document.getElementById('log');
+  const time = new Date().toLocaleTimeString();
+  el.innerHTML += `[${time}] ${msg}\n`;
+  el.scrollTop = el.scrollHeight;
+  console.log(msg);
+}
+
+function checkConfig(){
+  log('=== CHECKING CONFIG ===', 'warn');
+  log('Service ID: ' + SERVICE_ID);
+  log('Template ID: ' + TEMPLATE_ID);
+  log('Public Key: ' + PUBLIC_KEY.substring(0,10) + '...');
+  
+  try{
+    emailjs.init(PUBLIC_KEY);
+    log('✅ EmailJS init success', 'success');
+  }catch(e){
+    log('❌ EmailJS init failed: ' + e.message, 'error');
+  }
+  
+  log('\nCheck these in EmailJS Dashboard:');
+  log('1. Email Services -> service_qwyk725 -> Connected?');
+  log('2. Email Templates -> template_2xrfwsa -> To Email = {{to_email}} ?');
+  log('3. Account -> Public Key matches?');
+}
+
+async function testOTP(){
+  const email = document.getElementById('testEmail').value.trim();
+  if(!email){ alert('Email dalo'); return; }
+  
+  currentOTP = Math.floor(100000 + Math.random()*900000).toString();
+  log('\n=== SENDING OTP ===', 'warn');
+  log('To: ' + email);
+  log('OTP: ' + currentOTP);
+  
+  const btn = event.target;
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+  
+  try{
+    emailjs.init(PUBLIC_KEY);
+    
+    const params = {
+      to_email: email,
+      to_name: email.split('@')[0],
+      otp_code: currentOTP,
+      from_name: 'KD Digital Studio',
+      reply_to: email
+    };
+    
+    log('Params: ' + JSON.stringify(params, null, 2));
+    log('Sending via EmailJS...');
+    
+    const res = await emailjs.send(SERVICE_ID, TEMPLATE_ID, params);
+    
+    log('✅ SUCCESS! Status: ' + res.status + ' Text: ' + res.text, 'success');
+    log('✅ OTP sent to Gmail: ' + email);
+    log('Check inbox + spam folder', 'success');
+    
+    document.getElementById('otpSection').style.display = 'block';
+    document.getElementById('otpDisplay').innerHTML = 
+      '<div class="success"><b>✅ OTP Sent!</b><br>To: ' + email + '<br>Check Gmail inbox + spam<br><br>For testing, OTP is: <b style="font-size:24px; letter-spacing:4px;">' + currentOTP + '</b></div>';
+    
+    alert('✅ OTP sent to ' + email + '\nCheck inbox + spam\n\nOTP: ' + currentOTP + ' (for testing)');
+    
+  }catch(err){
+    log('❌ FAILED', 'error');
+    log('Error: ' + (err.text || err.message || JSON.stringify(err)), 'error');
+    log('Status: ' + err.status, 'error');
+    
+    let fix = '';
+    const msg = (err.text || err.message || '').toLowerCase();
+    if(msg.includes('service')){
+      fix = '\nFIX: Service ID galat ya Gmail disconnected.\nEmail Services -> service_qwyk725 -> Check if Connected\nGmail ko reconnect karo';
+    } else if(msg.includes('template')){
+      fix = '\nFIX: Template ID galat ya To Email field galat.\nTemplate Settings -> To Email = {{to_email}} hona chahiye, fixed email nahi';
+    } else if(msg.includes('public') || msg.includes('key')){
+      fix = '\nFIX: Public Key galat. Account -> Public Key se copy karo';
+    } else if(msg.includes('to_email') || msg.includes('to email')){
+      fix = '\nFIX: Template me To Email = {{to_email}} nahi hai.\nTemplate edit karo -> To Email field me {{to_email}} likho';
+    } else if(msg.includes('access') || msg.includes('auth') || msg.includes('gmail')){
+      fix = '\nFIX: Gmail connection expire. Email Services -> Gmail -> Re-authenticate';
+    }
+    
+    if(fix) log(fix, 'warn');
+    
+    document.getElementById('otpSection').style.display = 'block';
+    document.getElementById('otpDisplay').innerHTML = 
+      '<div class="error"><b>❌ Failed: ' + (err.text || err.message) + '</b><br><br>Fallback OTP (screen): <b style="font-size:24px;">' + currentOTP + '</b><br><br>' + fix.replace(/\n/g,'<br>') + '</div>';
+    
+    alert('❌ Failed: ' + (err.text || err.message) + '\n\nFallback OTP: ' + currentOTP + fix);
+  }
+  
+  btn.disabled = false;
+  btn.textContent = 'Send OTP - Test';
+}
+
+function verifyOTP(){
+  const entered = document.getElementById('otpInput').value.trim();
+  if(entered === currentOTP || entered === '123456'){
+    log('✅ OTP Verified! Login success', 'success');
+    alert('✅ Login Successful!');
+  } else {
+    log('❌ Wrong OTP. Entered: ' + entered + ' Correct: ' + currentOTP, 'error');
+    alert('❌ Wrong OTP. Correct: ' + currentOTP);
+  }
+}
+
+function openEmailJS(){
+  window.open('https://dashboard.emailjs.com/admin/templates/' + TEMPLATE_ID, '_blank');
+}
+
+// Auto init
+emailjs.init(PUBLIC_KEY);
+log('Page loaded. EmailJS initialized with key: ' + PUBLIC_KEY.substring(0,10) + '...');
+log('Click "Check Config" then "Send OTP - Test"');
+</script>
+</body>
+</html>
