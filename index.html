@@ -309,5 +309,26 @@ setTimeout(() => {
   requestAnimationFrame(raf);
 </script>
 
+<style>
+  .work{transition: transform 0.2s ease}
+  .progress{position:fixed;top:0;left:0;height:2px;background:#c6a76b;z-index:9999;width:0%}
+</style>
+<div class="progress" id="progress"></div>
+<script>
+  // Scroll Progress
+  window.addEventListener('scroll', () => {
+    document.getElementById('progress').style.width = (window.scrollY / (document.body.scrollHeight - window.innerHeight) * 100) + '%';
+  });
+  // 3D Tilt
+  document.querySelectorAll('.work, .card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width/2;
+      const y = e.clientY - rect.top - rect.height/2;
+      card.style.transform = `perspective(800px) rotateX(${-y/15}deg) rotateY(${x/15}deg) translateY(-5px)`;
+    });
+    card.addEventListener('mouseleave', () => card.style.transform = '');
+  });
+</script>
 </body>
 </html>
