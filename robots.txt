@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://katariyadigital.github.io/sitemap.xml
