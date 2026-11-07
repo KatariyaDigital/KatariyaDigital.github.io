@@ -129,33 +129,6 @@ setTimeout(function(){try{if(!localStorage.getItem('kd_cookie_consent')){documen
 <input id="trackId" value="KD-Q-1234" style="width:70%;padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#fff"><button onclick="document.getElementById('trackResult').innerText='✅ Order KD-Q-1234 — In Progress — 60% Complete — Delivery in 3 days'" style="padding:10px 14px;border-radius:10px;background:#2eff9e;border:none;font-weight:800;margin-left:6px;cursor:pointer">Track</button>
 <p id="trackResult" style="margin-top:10px;color:#2eff9e"></p>
 </div>
-
-<!-- EMI Calculator -->
-<div style="background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px;margin:12px 0">
-<b>🧮 EMI Calculator</b><p style="color:#8aa3c7;font-size:13px">Price daalo, EMI nikal jayegi</p>
-<input id="emiPrice" type="number" value="50000" style="width:45%;padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#fff" placeholder="Price">
-<input id="emiMonths" type="number" value="6" style="width:35%;padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#fff;margin-left:6px" placeholder="Months">
-<button onclick="document.getElementById('emiResult').innerText='Monthly EMI: ₹' + Math.ceil(document.getElementById('emiPrice').value / document.getElementById('emiMonths').value) + ' / month'" style="padding:10px 14px;border-radius:10px;background:#c6a76b;border:none;font-weight:800;margin-left:6px;cursor:pointer">Calculate</button>
-<p id="emiResult" style="margin-top:10px;color:#c6a76b;font-weight:800"></p>
-</div>
-
-<!-- Referral + Book Free Call -->
-<div style="display:flex;gap:12px;flex-wrap:wrap">
-<div style="flex:1;min-width:260px;background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px">
-<b>🎁 Referral — 10% OFF</b><p style="color:#8aa3c7;font-size:13px">Code: <b style="color:#fff">KD-REF-PRAJ001</b></p><button onclick="navigator.clipboard.writeText('KD-REF-PRAJ001');alert('Referral Code Copy Ho Gaya!')" style="padding:8px 14px;border-radius:10px;background:#fff;border:none;font-weight:800;cursor:pointer">Copy Code</button>
-</div>
-<div style="flex:1;min-width:260px;background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px">
-<b>📞 Book Free Call</b><p style="color:#8aa3c7;font-size:13px">15 min free consultation</p><a href="https://wa.me/918920524659?text=Hi, I want to book a Free Call" target="_blank" style="display:inline-block;padding:10px 16px;border-radius:10px;background:#25D366;color:#000;font-weight:800;text-decoration:none">Book on WhatsApp</a>
-</div>
-</div>
-
-<!-- Certificates + Audit -->
-<div style="background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px;margin:12px 0;text-align:center">
-<b>🏆 Certificates & Free Website Audit</b><p style="color:#8aa3c7;font-size:13px">100+ Projects • 4.9★ Rating • Delhi, India</p>
-<a href="https://wa.me/918920524659?text=Hi, I want Free Website Audit" target="_blank" style="display:inline-block;padding:10px 18px;border-radius:999px;background:#00f0ff;color:#000;font-weight:800;text-decoration:none">Get Free Audit</a>
-</div>
-
-</div>
 <body>
 <div class="progress" id="progress"></div>
 <!-- NAV -->
@@ -517,6 +490,88 @@ function sendChat(){
 </script>
 ... Cookie wala code ...
 ... Social wala code ...
+<!-- EMI Calculator -->
+<div style="background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px;margin:12px 0">
+<b>🧮 EMI Calculator</b><p style="color:#8aa3c7;font-size:13px">Price daalo, EMI nikal jayegi</p>
+<input id="emiPrice" type="number" value="50000" style="width:45%;padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#fff" placeholder="Price">
+<input id="emiMonths" type="number" value="6" style="width:35%;padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#fff;margin-left:6px" placeholder="Months">
+<button onclick="document.getElementById('emiResult').innerText='Monthly EMI: ₹' + Math.ceil(document.getElementById('emiPrice').value / document.getElementById('emiMonths').value) + ' / month'" style="padding:10px 14px;border-radius:10px;background:#c6a76b;border:none;font-weight:800;margin-left:6px;cursor:pointer">Calculate</button>
+<p id="emiResult" style="margin-top:10px;color:#c6a76b;font-weight:800"></p>
+</div>
+
+<!-- Referral + Book Free Call -->
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<div style="flex:1;min-width:260px;background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px">
+<b>🎁 Referral — 10% OFF</b><p style="color:#8aa3c7;font-size:13px">Code: <b style="color:#fff">KD-REF-PRAJ001</b></p><button onclick="navigator.clipboard.writeText('KD-REF-PRAJ001');alert('Referral Code Copy Ho Gaya!')" style="padding:8px 14px;border-radius:10px;background:#fff;border:none;font-weight:800;cursor:pointer">Copy Code</button>
+</div>
+<div style="flex:1;min-width:260px;background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px">
+<b>📞 Book Free Call</b><p style="color:#8aa3c7;font-size:13px">15 min free consultation</p><a href="https://wa.me/918920524659?text=Hi, I want to book a Free Call" target="_blank" style="display:inline-block;padding:10px 16px;border-radius:10px;background:#25D366;color:#000;font-weight:800;text-decoration:none">Book on WhatsApp</a>
+</div>
+</div>
+
+<!-- Certificates + Audit -->
+<div style="background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px;margin:12px 0;text-align:center">
+<b>🏆 Certificates & Free Website Audit</b><p style="color:#8aa3c7;font-size:13px">100+ Projects • 4.9★ Rating • Delhi, India</p>
+<a href="https://wa.me/918920524659?text=Hi, I want Free Website Audit" target="_blank" style="display:inline-block;padding:10px 18px;border-radius:999px;background:#00f0ff;color:#000;font-weight:800;text-decoration:none">Get Free Audit</a>
+</div>
+
+</div>
+<!-- CLIENT DASHBOARD + PAYMENTS -->
+<div style="max-width:900px;margin:20px auto;padding:0 12px">
+<h2 style="text-align:center">👤 Client Dashboard</h2>
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<div style="flex:1;min-width:260px;background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px"><b>💼 My Projects</b><p style="color:#8aa3c7;font-size:13px">Website — In Progress — 60%</p><p style="color:#8aa3c7;font-size:13px">Branding — Completed ✅</p></div>
+<div style="flex:1;min-width:260px;background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px"><b>🧾 Invoices</b><p style="color:#8aa3c7;font-size:13px">INV-001 — ₹25,000 — Paid ✅</p><button onclick="window.print()" style="padding:8px 14px;border-radius:10px;background:#fff;border:none;font-weight:800;cursor:pointer">Download Invoice</button></div>
+</div>
+<div style="background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px;margin-top:12px"><b>💳 Payment — UPI</b><p style="color:#8aa3c7;font-size:13px">UPI ID: <b style="color:#fff">8920524659@ybl</b></p><button onclick="navigator.clipboard.writeText('8920524659@ybl');alert('UPI ID Copy Ho Gayi!')" style="padding:8px 14px;border-radius:10px;background:#2eff9e;border:none;font-weight:800;cursor:pointer">Copy UPI ID</button><a href="upi://pay?pa=8920524659@ybl&pn=KD%20Digital&cu=INR" style="display:inline-block;padding:8px 14px;border-radius:10px;background:#00f0ff;color:#000;font-weight:800;text-decoration:none;margin-left:6px">Pay via UPI App</a><p style="font-size:12px;color:#8aa3c7;margin-top:8px">Pay karke WhatsApp pe screenshot bhejo — 8920524659</p></div>
+</div>
+<!-- CRM + AI CHATBOT -->
+<div style="max-width:900px;margin:20px auto;padding:0 12px">
+<h2 style="text-align:center">📊 CRM — Leads</h2>
+<input id="crmName" placeholder="Client Name" style="padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#fff;width:30%">
+<input id="crmPhone" placeholder="Phone" style="padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#fff;width:30%;margin-left:6px">
+<button onclick="var n=document.getElementById('crmName').value;var p=document.getElementById('crmPhone').value;if(n){var l=JSON.parse(localStorage.getItem('kd_leads')||'[]');l.push({name:n,phone:p,date:new Date().toLocaleDateString()});localStorage.setItem('kd_leads',JSON.stringify(l));alert('Lead Save Ho Gaya!');showLeads();}" style="padding:10px 14px;border-radius:10px;background:#c6a76b;border:none;font-weight:800;cursor:pointer">Add Lead</button>
+<div id="crmList" style="margin-top:10px;color:#cbd5e1;font-size:13px"></div>
+<script>function showLeads(){var l=JSON.parse(localStorage.getItem('kd_leads')||'[]');document.getElementById('crmList').innerHTML=l.map(function(x){return '• '+x.name+' — '+x.phone+' — '+x.date}).join('<br>')||'Abhi koi lead nahi hai';}showLeads();</script>
+</div>
+<!-- AI Chatbot Button -->
+<button onclick="document.getElementById('aiChat').style.display=document.getElementById('aiChat').style.display=='block'?'none':'block'" style="position:fixed;bottom:20px;right:20px;z-index:3000;background:#00f0ff;color:#000;border:none;padding:12px 16px;border-radius:999px;font-weight:800;cursor:pointer">💬 AI Chat</button>
+<div id="aiChat" style="display:none;position:fixed;bottom:70px;right:20px;z-index:3000;width:300px;background:#0a1232;border:1px solid rgba(255,255,255,.2);border-radius:16px;padding:12px">
+<b>🤖 KD AI Assistant</b><div id="aiMsgs" style="height:120px;overflow:auto;color:#cbd5e1;font-size:13px;margin:8px 0">Hi! Website, Pricing ya Service ke baare me poochho.</div>
+<input id="aiInput" placeholder="Type..." style="width:70%;padding:8px;border-radius:10px;border:1px solid #333;background:#111;color:#fff"><button onclick="var q=document.getElementById('aiInput').value.toLowerCase();var a='Humari Pricing ₹25,000 se start hoti hai. WhatsApp karo 8920524659 pe, full details bhej dunga.';if(q.includes('price')||q.includes('pricing')||q.includes('cost')){a='Starter ₹25,000 | Business ₹50,000 | Premium ₹1,00,000+ | Promo Code KD20 se 20% OFF!';}document.getElementById('aiMsgs').innerHTML+='<br><b>You:</b> '+q+'<br><b>AI:</b> '+a;document.getElementById('aiInput').value='';" style="padding:8px 10px;border-radius:10px;background:#fff;border:none;font-weight:800;cursor:pointer">Send</button>
+</div>
+<!-- MULTI-CURRENCY + LANGUAGE -->
+<div style="max-width:900px;margin:20px auto;padding:0 12px;text-align:center">
+<b>🌍 Currency & Language</b><br><br>
+<select id="currSelect" onchange="var c=this.value;var rates={INR:1,USD:0.012,EUR:0.011,GBP:0.009,AED:0.044};var sym={INR:'₹',USD:'$',EUR:'€',GBP:'£',AED:'AED '};document.querySelectorAll('[data-price]').forEach(function(el){var inr=parseFloat(el.getAttribute('data-price'));el.innerText=sym[c]+Math.ceil(inr*rates[c]).toLocaleString('en-IN')});" style="padding:10px;border-radius:10px;background:#111;color:#fff;border:1px solid #333">
+<option value="INR">INR ₹ — India</option><option value="USD">USD $ — USA</option><option value="EUR">EUR € — Europe</option><option value="GBP">GBP £ — UK</option><option value="AED">AED — UAE</option>
+</select>
+<button onclick="alert('Hindi Mode ON — Ab website Hindi me dikhegi (Demo). English ke liye dobara dabao.')" style="padding:10px 14px;border-radius:10px;background:#fff;border:none;font-weight:800;margin-left:8px;cursor:pointer">हिंदी / English</button>
+<p style="color:#8aa3c7;font-size:12px;margin-top:8px">Example: <span data-price="25000">₹25,000</span> | <span data-price="50000">₹50,000</span> | <span data-price="100000">₹1,00,000</span> — Currency badal ke dekho</p>
+</div>
+<!-- OTP LOGIN -->
+<div style="max-width:900px;margin:20px auto;padding:0 12px">
+<div style="background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px;text-align:center">
+<b>🔐 Client Login — OTP</b><p style="color:#8aa3c7;font-size:13px">Email daalo, OTP aayega (Demo me OTP screen pe dikhega, live me Gmail pe jayega)</p>
+<input id="otpEmail" placeholder="Email" style="padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#fff;width:60%">
+<button onclick="var otp=Math.floor(100000+Math.random()*900000);localStorage.setItem('kd_demo_otp',otp);alert('Demo OTP: '+otp+' — Live me ye Gmail pe jayega. Service: service_uka37no');" style="padding:10px 14px;border-radius:10px;background:#2eff9e;border:none;font-weight:800;cursor:pointer">Send OTP</button><br><br>
+<input id="otpInput" placeholder="OTP daalo" style="padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#fff;width:40%">
+<button onclick="if(document.getElementById('otpInput').value==localStorage.getItem('kd_demo_otp')){alert('✅ Login Success! Dashboard khul gaya.');}else{alert('❌ Wrong OTP');}" style="padding:10px 14px;border-radius:10px;background:#fff;border:none;font-weight:800;cursor:pointer">Verify OTP</button>
+</div>
+</div>
+<!-- DPDP + PRIVACY -->
+<div style="max-width:900px;margin:20px auto;padding:0 12px;text-align:center">
+<b>🛡️ Privacy & My Data Rights — DPDP Act 2025</b><p style="color:#8aa3c7;font-size:13px">Tumhara data tumhara hai. Download ya Delete kar sakte ho.</p>
+<button onclick="var d={leads:localStorage.getItem('kd_leads'),consent:localStorage.getItem('kd_cookie_consent')};var blob=new Blob([JSON.stringify(d)],{type:'application/json'});var a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='my-data.json';a.click();alert('Data Download Ho Gaya!')" style="padding:10px 14px;border-radius:10px;background:#fff;border:none;font-weight:800;cursor:pointer">Download My Data</button>
+<button onclick="if(confirm('Kya tum apna saara data delete karna chahte ho?')){localStorage.clear();alert('Data Delete Ho Gaya!');}" style="padding:10px 14px;border-radius:10px;background:transparent;border:1px solid #ff4444;color:#ff4444;font-weight:800;margin-left:8px;cursor:pointer">Delete My Data</button>
+<p style="font-size:11px;color:#8aa3c7;margin-top:8px"><a href="#" style="color:#00f0ff">Privacy Policy</a> • <a href="#" style="color:#00f0ff">Terms</a> • Policy Version DPDP-2025-v1.2 • 1-Click Subscription Cancel Available</p>
+</div>
+<meta name="description" content="KD Digital Studio - Website Development, Branding, Digital Services in Delhi, India. Pricing ₹25,000 se start.">
+<meta name="keywords" content="website development delhi, branding, digital studio, KD Digital">
+<link rel="canonical" href="https://katariyadigital.github.io/">
+<meta property="og:title" content="KD Digital Studio - Website Development Delhi">
+<meta property="og:description" content="Premium Website, Branding & Digital Services. Pricing ₹25,000 se start.">
+<meta property="og:url" content="https://katariyadigital.github.io/">
 </body>
 </html>
 </body>
