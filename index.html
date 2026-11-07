@@ -119,7 +119,43 @@ function acceptAllCookies(){try{localStorage.setItem('kd_cookie_consent','accept
 function rejectAllCookies(){try{localStorage.setItem('kd_cookie_consent','reject_all');}catch(e){}document.getElementById('simpleCookie').classList.remove('show');}
 setTimeout(function(){try{if(!localStorage.getItem('kd_cookie_consent')){document.getElementById('simpleCookie').classList.add('show');}}catch(e){document.getElementById('simpleCookie').classList.add('show');}},1200);
 </script>
+<!-- EXTRA TOOLS - After Transparent Pricing - All In One -->
+<div style="max-width:900px;margin:30px auto;padding:0 12px">
+<h2 style="text-align:center">✨ Extra Tools</h2>
 
+<!-- Live Order Tracker -->
+<div style="background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px;margin:12px 0">
+<b>📦 Live Order Tracker</b><p style="color:#8aa3c7;font-size:13px">Apna Order ID daalo — Demo: KD-Q-1234</p>
+<input id="trackId" value="KD-Q-1234" style="width:70%;padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#fff"><button onclick="document.getElementById('trackResult').innerText='✅ Order KD-Q-1234 — In Progress — 60% Complete — Delivery in 3 days'" style="padding:10px 14px;border-radius:10px;background:#2eff9e;border:none;font-weight:800;margin-left:6px;cursor:pointer">Track</button>
+<p id="trackResult" style="margin-top:10px;color:#2eff9e"></p>
+</div>
+
+<!-- EMI Calculator -->
+<div style="background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px;margin:12px 0">
+<b>🧮 EMI Calculator</b><p style="color:#8aa3c7;font-size:13px">Price daalo, EMI nikal jayegi</p>
+<input id="emiPrice" type="number" value="50000" style="width:45%;padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#fff" placeholder="Price">
+<input id="emiMonths" type="number" value="6" style="width:35%;padding:10px;border-radius:10px;border:1px solid #333;background:#111;color:#fff;margin-left:6px" placeholder="Months">
+<button onclick="document.getElementById('emiResult').innerText='Monthly EMI: ₹' + Math.ceil(document.getElementById('emiPrice').value / document.getElementById('emiMonths').value) + ' / month'" style="padding:10px 14px;border-radius:10px;background:#c6a76b;border:none;font-weight:800;margin-left:6px;cursor:pointer">Calculate</button>
+<p id="emiResult" style="margin-top:10px;color:#c6a76b;font-weight:800"></p>
+</div>
+
+<!-- Referral + Book Free Call -->
+<div style="display:flex;gap:12px;flex-wrap:wrap">
+<div style="flex:1;min-width:260px;background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px">
+<b>🎁 Referral — 10% OFF</b><p style="color:#8aa3c7;font-size:13px">Code: <b style="color:#fff">KD-REF-PRAJ001</b></p><button onclick="navigator.clipboard.writeText('KD-REF-PRAJ001');alert('Referral Code Copy Ho Gaya!')" style="padding:8px 14px;border-radius:10px;background:#fff;border:none;font-weight:800;cursor:pointer">Copy Code</button>
+</div>
+<div style="flex:1;min-width:260px;background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px">
+<b>📞 Book Free Call</b><p style="color:#8aa3c7;font-size:13px">15 min free consultation</p><a href="https://wa.me/918920524659?text=Hi, I want to book a Free Call" target="_blank" style="display:inline-block;padding:10px 16px;border-radius:10px;background:#25D366;color:#000;font-weight:800;text-decoration:none">Book on WhatsApp</a>
+</div>
+</div>
+
+<!-- Certificates + Audit -->
+<div style="background:#0a1232;border:1px solid rgba(255,255,255,.15);border-radius:16px;padding:16px;margin:12px 0;text-align:center">
+<b>🏆 Certificates & Free Website Audit</b><p style="color:#8aa3c7;font-size:13px">100+ Projects • 4.9★ Rating • Delhi, India</p>
+<a href="https://wa.me/918920524659?text=Hi, I want Free Website Audit" target="_blank" style="display:inline-block;padding:10px 18px;border-radius:999px;background:#00f0ff;color:#000;font-weight:800;text-decoration:none">Get Free Audit</a>
+</div>
+
+</div>
 <body>
 <div class="progress" id="progress"></div>
 <!-- NAV -->
